@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.erp.pojo.Order">
+            <id property="id" column="id" />
+            <result property="custId" column="cust_id" />
+            <result property="itemId" column="item_id" />
+            <result property="orderDate" column="order_date" />
+            <result property="state" column="state" />
+            <result property="pay" column="pay" />
+            <result property="payMoney" column="pay_money" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,cust_id,item_id,order_date,state,pay,
+        pay_money
+    </sql>
+
+    <select id="queryCountHisDataMapper" resultType="com.erp.dto.HisData">
+        select cust_id custId,sum(pay_money) hitTotal from t_order GROUP BY cust_id
+    </select>
+
+    <select id="queryOrderListMapper" resultType="com.erp.pojo.Order">
+        select ord.*,customer.cust_name custName,item.item_name itemName from t_customer customer
+        inner join t_order ord on customer.id=ord.cust_id
+        inner join t_item item on item.id=ord.item_id
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+            <if test="state!=null and state!=''">
+                and state=#{state}
+            </if>
+            <if test="custName!=null and custName!=''">
+                and cust_name=#{custName}
+            </if>
+            <if test="itemName!=null and itemName!=''">
+                and item_name=#{itemName}
+            </if>
+        </where>
+    </select>
+</mapper>

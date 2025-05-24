@@ -42,13 +42,16 @@
   import ListSellJh from "@/views/ListSellJh";
   import ListCustOrder from "@/views/ListCustOrder.vue";
   import ListAfter from "@/views/ListAfter.vue";
+  import AddMenus from "@/views/AddMenus.vue";
+  import RoleManager from "@/views/RoleManager.vue";
+  import UserManager from "@/views/UserManager.vue";
   import {onMounted, ref} from "vue";
   import axios from 'axios';
   import { ElMessage, ElLoading } from 'element-plus';
 
 
   // 声明数组保存所有组件
-  const views = [AddCustomer, ListCustomer,ListAfter,ListCustOrder, AddSellJh,,, ListSellJh];
+  const views = [AddCustomer, ListCustomer,ListAfter,ListCustOrder, AddSellJh,,, ListSellJh, AddMenus,UserManager,RoleManager];
   // 声明变量保存当前需要显示的组件名
   const currentComponent = ref(views[0]);
   // 声明菜单对象集合数据

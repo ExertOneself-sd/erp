@@ -71,6 +71,7 @@ public class CustomerController {
 
     @GetMapping("/listAllCust")
     public List<Customer> listAllCust(){
+
         return customerService.queryCustIdNameService();
     }
 

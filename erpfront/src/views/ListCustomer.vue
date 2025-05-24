@@ -1,5 +1,5 @@
 <template>
-    <h2>客户列表</h2>
+  <h2>客户列表</h2>
   <el-table :data="custList" style="width: 100%">
     <el-table-column prop="id" label="客户编号" width="180" />
     <el-table-column prop="custName" label="客户姓名" width="180" />
@@ -8,7 +8,7 @@
     <el-table-column prop="cutType" label="客户职业" />
     <el-table-column prop="graed" label="客户等级" />
     <el-table-column prop="hitTotal" label="消费总额" />
-
+    
     <el-table-column fixed="right" label="操作" width="120">
       <template #default="scope">
         <el-button link type="primary" size="small" @click="deleteCust(scope.row.id)">删除</el-button>
@@ -18,15 +18,15 @@
   </el-table>
   <hr/>
   <el-pagination
-    :page-size="6"
-    :pager-count="10"
-    layout="prev, pager, next"
-    :total="total"
-    class="mt-4" @current-change="handlePageChange"
+  :page-size="6"
+  :pager-count="10"
+  layout="prev, pager, next"
+  :total="total"
+  class="mt-4" @current-change="handlePageChange"
   />
   <el-dialog
-      v-model="dialogCustVisible"
-      width="80%"
+  v-model="dialogCustVisible"
+  width="80%"
   >
   <h2>修改客户信息</h2>
   <el-form :model="custFrom" label-width="120px">
@@ -36,7 +36,7 @@
     <el-form-item label="地址">
       <el-input v-model="custFrom.address" />
     </el-form-item>
-     <el-form-item label="联系电话">
+    <el-form-item label="联系电话">
       <el-input v-model="custFrom.phone" />
     </el-form-item>
     <el-form-item label="客户职业">
@@ -48,15 +48,15 @@
         <el-option label="项目经理" value="项目经理" />
       </el-select>
     </el-form-item>
-     <el-form-item label="客户等级">
+    <el-form-item label="客户等级">
       <el-input v-model="custFrom.graed" />
     </el-form-item>
-        <el-form-item>
+    <el-form-item>
       <el-button type="primary" @click="subCustFrom">保存</el-button>
       <el-button>取消</el-button>
     </el-form-item>
   </el-form>
-  </el-dialog>
+</el-dialog>
 </template>
 
 <script setup>

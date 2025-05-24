@@ -15,4 +15,9 @@ public interface MenusService extends IService<Menus> {
 
     /*加载左侧导航菜单，根据当前用户加载*/
     public List<MenusVo> queryMenusListService();
+
+    /*添加菜单节点*/
+    public void saveMenusService(Menus menus);
+
+
 }

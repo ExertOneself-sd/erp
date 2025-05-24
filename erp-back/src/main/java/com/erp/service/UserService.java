@@ -1,0 +1,24 @@
+package com.erp.service;
+
+import com.erp.pojo.User;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
+
+/**
+* @author hzr
+* @description 针对表【t_user】的数据库操作Service
+* @createDate 2025-05-19 14:32:14
+*/
+public interface UserService extends IService<User> {
+
+    /*实现用户信息分页查询*/
+    public Map<String,Object> queryUserListService(Integer pageNum,Integer pageSize);
+
+    public void saveUserRolerService(User user);
+
+    public void updateUserRolerService(User user);
+
+    public void deleteUserRolerService(Integer id);
+
+}

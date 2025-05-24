@@ -1,5 +1,6 @@
 package com.erp.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.erp.pojo.Menus;
 import com.erp.service.MenusService;
@@ -40,6 +41,17 @@ public class MenusServiceImpl extends ServiceImpl<MenusMapper, Menus>
             }
         }
         return result;
+    }
+
+    @Override
+    public void saveMenusService(Menus menus) {
+
+        QueryWrapper<Menus> wrapper = new QueryWrapper<>();
+        wrapper.select("max(component) maxv");
+        Menus ms= menusMapper.selectOne(wrapper);
+
+        menus.setComponent(ms.getMaxv()+1);
+        menusMapper.insert(menus);
     }
 
 }

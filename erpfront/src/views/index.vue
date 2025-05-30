@@ -45,13 +45,16 @@
   import AddMenus from "@/views/AddMenus.vue";
   import RoleManager from "@/views/RoleManager.vue";
   import UserManager from "@/views/UserManager.vue";
+  import Category from "@/views/Category.vue";
+  import ItemManager from "@/views/ItemManager.vue";
+  import BuyListManager from "@/views/BuyListManager.vue";
   import {onMounted, ref} from "vue";
   import axios from 'axios';
   import { ElMessage, ElLoading } from 'element-plus';
 
 
   // 声明数组保存所有组件
-  const views = [AddCustomer, ListCustomer,ListAfter,ListCustOrder, AddSellJh,,, ListSellJh, AddMenus,UserManager,RoleManager];
+  const views = [AddCustomer, ListCustomer,ListAfter,ListCustOrder, AddSellJh,,, ListSellJh, AddMenus,UserManager,RoleManager,,Category,ItemManager,BuyListManager];
   // 声明变量保存当前需要显示的组件名
   const currentComponent = ref(views[0]);
   // 声明菜单对象集合数据
@@ -82,14 +85,16 @@
     });
     
     try {
-      const { data } = await axios.get("http://localhost:8081/listMenus");
-      menus.value = data;
-    } catch (error) {
-      ElMessage.error('加载菜单失败: ' + error.message);
-      console.error('加载菜单失败:', error);
-    } finally {
-      loadingInstance.close();
+    const { data } = await axios.get("http://localhost:8081/listMenus");
+    if (!Array.isArray(data)) { // 验证数据结构
+      throw new Error("菜单数据格式错误");
     }
+    menus.value = data;
+  } catch (error) {
+    ElMessage.error('加载菜单失败: ' + error.message);
+  } finally {
+    loadingInstance.close();
+  }
   });
 </script>
 

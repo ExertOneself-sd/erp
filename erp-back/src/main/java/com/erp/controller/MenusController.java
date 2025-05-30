@@ -20,6 +20,7 @@ public class MenusController {
 
     @RequestMapping("/listMenus")
     public List<MenusVo> listMenus() {
+
         return menusService.queryMenusListService();
     }
 

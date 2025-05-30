@@ -9,7 +9,7 @@
       ref="treeRef"
       @node-click="hanldNodeClick"
   >
-          <template #default="{ node, data }">
+      <template #default="{ node, data }">
         <div class="custom-tree-node">
           <span>{{ node.label }}</span>
           <div>

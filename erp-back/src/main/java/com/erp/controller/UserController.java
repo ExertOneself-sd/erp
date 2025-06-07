@@ -1,6 +1,7 @@
 package com.erp.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.erp.dto.CountResult;
 import com.erp.pojo.User;
 import com.erp.service.UserRoleService;
 import com.erp.service.UserService;
@@ -80,5 +81,15 @@ public class UserController {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    @GetMapping("/countEmpAge")
+    public List<CountResult> countEmpAge() {
+        return userService.countEmployeeAgeService();
+    }
+
+    @GetMapping("countEmpEdu")
+    public List<CountResult> countEmpEdu() {
+        return userService.countEmployeeEduService();
     }
 }

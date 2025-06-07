@@ -35,4 +35,27 @@
             </if>
         </where>
     </select>
+
+    <select id="countQuestionTypeMapper" resultType="com.erp.dto.CountResult">
+        select
+            sum 'value',
+            concat(question,' : ',TRUNCATE(sum/total*100,2),'%') 'name'
+        from
+            (
+            select question,count(id) sum ,(select count(id) from t_after_sales) total from t_after_sales
+            group by question
+            )out_table
+    </select>
+
+    <select id="countQuestionStateMapper" resultType="com.erp.dto.CountResult">
+        select
+            sum 'value',
+            concat(' [ ',state,' ] ',TRUNCATE(sum/total*100,2),'%') 'name'
+        from
+            (
+            select state,count(id) sum,
+            (select count(id) from t_after_sales) total from t_after_sales
+            group by state
+            )out_table
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.erp.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.erp.dto.CountResult;
 import com.erp.pojo.AfterSales;
 import com.erp.service.AfterSalesService;
 import com.erp.mapper.AfterSalesMapper;
@@ -36,6 +37,15 @@ public class AfterSalesServiceImpl extends ServiceImpl<AfterSalesMapper, AfterSa
         return result;
     }
 
+    @Override
+    public List<CountResult> countQuestionTypeService(){
+        return afterSalesMapper.countQuestionTypeMapper();
+    }
+
+    @Override
+    public List<CountResult> countQuestionStateService(){
+        return afterSalesMapper.countQuestionStateMapper();
+    }
 }
 
 

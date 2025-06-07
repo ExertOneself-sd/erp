@@ -8,10 +8,15 @@ import com.erp.pojo.InStore;
 import com.erp.pojo.Item;
 import com.erp.service.InStoreService;
 import com.erp.mapper.InStoreMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author hzr
@@ -61,6 +66,16 @@ public class InStoreServiceImpl extends ServiceImpl<InStoreMapper, InStore>
         inStore.setIsIn("1");
         inStoreMapper.insert(inStore);
 
+    }
+
+    @Override
+    public Map<String,Object> queryInStoreListService(Integer pageNum, Integer pageSize){
+        Page<Object> page= PageHelper.startPage(pageNum,pageSize);
+        List<InStore> inStores=inStoreMapper.queryInStoreListMapper();
+        Map<String,Object> result=new HashMap<>();
+        result.put("total",page.getTotal());
+        result.put("inStores",inStores);
+        return result;
     }
 
 }

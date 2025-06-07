@@ -3,6 +3,7 @@ package com.erp.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.erp.dto.CountResult;
 import com.erp.dto.HisData;
 import com.erp.mapper.OrderMapper;
 import com.erp.pojo.Customer;
@@ -65,6 +66,10 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         return customerlist;
     }
 
+    @Override
+    public List<CountResult> countCustService(){
+        return customerMapper.countCustomerAreaMapper();
+    }
 }
 
 

@@ -3,6 +3,7 @@ package com.erp.service;
 import com.erp.pojo.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,4 +13,11 @@ import java.util.Map;
 */
 public interface OrderService extends IService<Order> {
     public Map<String,Object> queryOrderListServie(Integer pageNum,Integer pageSize,Order order);
+
+    public List<Map<String,Object>> querySellYearServie();
+
+    public Map<String,Object> queryYearMonthServie(String year);
+
+    /*统计年每个月销售商品的数量*/
+    public Map<String,Object> querySellNumServie(String year);
 }

@@ -18,4 +18,8 @@
         id,cust_name,address,phone,cut_type,graed,
         hit_total
     </sql>
+
+    <select id="countCustomerAreaMapper" resultType="com.erp.dto.CountResult">
+        select address 'name',count(0) 'value' from t_customer group by address
+    </select>
 </mapper>

@@ -48,13 +48,21 @@
   import Category from "@/views/Category.vue";
   import ItemManager from "@/views/ItemManager.vue";
   import BuyListManager from "@/views/BuyListManager.vue";
+  import InStoreList from "@/views/InStoreList.vue";
+  import OutStoreList from "@/views/OutStoreList.vue";
+  import ListStore from "@/views/ListStore.vue"
+  import CustomerArea from "@/views/CustomerArea.vue";
+  import YearMonthCount from "@/views/YearMonthCount.vue";
+  import EmployeeCount  from "@/views/EmployeeCount.vue";
+  import AfterSaleCount from "@/views/AfterSaleCount.vue";
+  import YearNumCount from "@/views/YearNumCount.vue";
   import {onMounted, ref} from "vue";
   import axios from 'axios';
   import { ElMessage, ElLoading } from 'element-plus';
 
 
   // 声明数组保存所有组件
-  const views = [AddCustomer, ListCustomer,ListAfter,ListCustOrder, AddSellJh,,, ListSellJh, AddMenus,UserManager,RoleManager,,Category,ItemManager,BuyListManager];
+  const views = [AddCustomer, ListCustomer,ListAfter,ListCustOrder, AddSellJh,CustomerArea,YearMonthCount, ListSellJh, AddMenus,UserManager,RoleManager,,Category,ItemManager,BuyListManager,InStoreList,OutStoreList,ListStore,EmployeeCount,AfterSaleCount,YearNumCount];
   // 声明变量保存当前需要显示的组件名
   const currentComponent = ref(views[0]);
   // 声明菜单对象集合数据

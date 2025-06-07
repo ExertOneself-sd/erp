@@ -1,5 +1,6 @@
 package com.erp.controller;
 
+import com.erp.dto.CountResult;
 import com.erp.pojo.Customer;
 import com.erp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,4 +76,9 @@ public class CustomerController {
         return customerService.queryCustIdNameService();
     }
 
+    /*处理客户地区分布统计请求*/
+    @GetMapping("/countCust")
+    public List<CountResult> countCust(){
+        return customerService.countCustService();
+    }
 }

@@ -42,4 +42,22 @@
             </if>
         </where>
     </select>
+
+    <select id="querySellYearMapper" resultType="java.lang.Integer">
+        select distinct year(order_date) from t_order
+    </select>
+
+    <select id="countSellMonthMapper" resultType="com.erp.dto.SellResult" parameterType="java.lang.String">
+        select month(order_date) mth,sum(pay_money) mny from t_order
+        where year(order_date)=#{year}
+        group by mth
+        order by mth
+    </select>
+
+    <select id="countSellNumMapper" resultType="com.erp.dto.SellResult">
+        select month(order_date) mth,sum(num) mny from t_order
+        where year(order_date)=#{year}
+        group by mth
+        order by mth
+    </select>
 </mapper>

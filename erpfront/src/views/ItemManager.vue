@@ -250,7 +250,7 @@
         <el-button-group>
             <el-button link type="primary" size="small" @click="editItem(scope.row)">修改</el-button>
             <el-button link type="primary" size="small" @click="openBuyDialog(scope.row.id)">采购</el-button>
-            <el-button link type="primary" size="small" @click="openCustDialog(scope.row.id)">出库</el-button>
+            <el-button link type="primary" size="small" @click="openCustDialog(scope.row)">出库</el-button>
         </el-button-group>
         <el-button-group>
             <el-button link type="primary" size="small" @click="upItem(scope.row.id)">上架</el-button>
@@ -302,7 +302,30 @@
         </el-form-item>
     </el-form>
   </el-dialog>
-
+    
+    <el-dialog
+      v-model="itemOutDialog"
+      width="40%">
+    <h2>商品出库</h2>
+    <el-form :model="outForm" label-width="120px">
+        <el-form-item label="商品名称：">
+          {{outForm.itemName}}
+        </el-form-item>
+        <el-form-item label="仓库：">
+          {{outForm.storeName}}
+        </el-form-item>
+        <el-form-item label="商品库存：">
+          {{outForm.store}}
+        </el-form-item>
+        <el-form-item label="出库数量：">
+          <el-input v-model="outForm.outNum" style="width: 80%"/>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="saveOutOrder">保存</el-button>
+          <el-button type="primary" >清空</el-button>
+        </el-form-item>
+    </el-form>
+  </el-dialog>
 </template>
 
 <script setup>
@@ -693,6 +716,36 @@ function saveBuyOrder(){
       buyForm.buyUser=''
       buyForm.phone=''
       buyForm.buyNum=''
+    }
+    ElMessage(response.data.msg)
+
+  })
+  .catch((error)=>{
+    console.log(error);
+  })
+}
+
+const itemOutDialog=ref(false)
+const outForm=reactive({
+  itemName:'',
+  storeName:'',
+  store:0,
+  outNum:0
+})
+
+function openCustDialog(row){
+  itemOutDialog.value=true
+  outForm.itemName=row.itemName
+  outForm.store=row.store
+  outForm.storeName=row.storeName
+  outForm.productId=row.id
+}
+
+function saveOutOrder(){
+  axios.post("http://localhost:8081/doItemOutStore",outForm)
+  .then((response)=>{
+    if(response.data.code==200){
+      itemOutDialog.value=false
     }
     ElMessage(response.data.msg)
 

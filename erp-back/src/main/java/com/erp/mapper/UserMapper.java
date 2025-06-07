@@ -1,7 +1,10 @@
 package com.erp.mapper;
 
+import com.erp.dto.CountResult;
 import com.erp.pojo.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author hzr
@@ -13,6 +16,12 @@ public interface UserMapper extends BaseMapper<User> {
 
     /*保存用户信息*/
     public void saveUserMapper(User user);
+
+    /*实现员工按照年龄段分布统计*/
+    public List<CountResult> countEmployeeAgeMapper();
+
+    /*实现员工按照学历分布统计*/
+    public List<CountResult> countEmployeeEduMapper();
 
 }
 

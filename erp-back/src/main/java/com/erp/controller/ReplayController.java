@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin
 public class ReplayController {
 
     @Autowired

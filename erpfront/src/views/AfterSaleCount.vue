@@ -7,9 +7,13 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
 // import axios from 'axios';
 import { getCurrentInstance } from "vue";
 const axios=getCurrentInstance().proxy.axios
+=======
+import axios from 'axios';
+>>>>>>> 9b36866f743edc05e0f02f00103b929e0d29fc81
 import * as echarts from 'echarts'
 import { onMounted } from 'vue';
 

@@ -64,7 +64,9 @@ class="mt-4" @current-change="userPageChange"
 </template>
 
 <script setup>
-import axios from 'axios';
+// import axios from 'axios';
+import { getCurrentInstance } from "vue";
+const axios=getCurrentInstance().proxy.axios
 import { ElMessage } from 'element-plus';
 import { onMounted,reactive,ref } from 'vue';
 

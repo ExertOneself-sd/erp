@@ -74,7 +74,9 @@ class="mt-4" @current-change="orderPageChange"
 
 <script setup>
 import { onMounted,reactive,ref } from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
+import { getCurrentInstance } from "vue";
+const axios=getCurrentInstance().proxy.axios
 
 
 const orderList = ref([])

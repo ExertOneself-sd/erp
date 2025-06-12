@@ -5,6 +5,9 @@ import com.erp.dto.CountResult;
 import com.erp.pojo.User;
 import com.erp.service.UserRoleService;
 import com.erp.service.UserService;
+import com.erp.vo.MenusVo;
+import com.erp.vo.UserVo;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,5 +94,39 @@ public class UserController {
     @GetMapping("countEmpEdu")
     public List<CountResult> countEmpEdu() {
         return userService.countEmployeeEduService();
+    }
+
+    /*处理用户登录请求*/
+    @PostMapping("/userLogin")
+    public Map<String,Object> userLogin(@RequestBody UserVo user, HttpSession session) {
+        Map<String,Object> result = new HashMap<>();
+        result.put("code", 400);
+        result.put("msg", "登录失败！");
+        try{
+            QueryWrapper<User> wrapper = new QueryWrapper();
+            wrapper.eq("uname",user.getUname());
+            List<User> list=userService.list(wrapper);
+            if(list!=null&&list.size()==1){
+                //获得数据库查询到的用户对象
+                User dbUser=list.get(0);
+                if(dbUser.getUpwd().equals(user.getUpwd())){
+                    //将当前登录用户保存到session会话中
+                    session.setAttribute("online",dbUser);
+                    result.put("code", 200);
+                    result.put("msg","登录成功！");
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    /*处理加载当前登录用户菜单的请求*/
+    @GetMapping("/queryUserMenus")
+    public List<MenusVo> queryUserMenus(HttpSession session){
+        //获得系统当前登录用户
+        User user= (User) session.getAttribute("online");
+        return userService.queryUserMenusListService(user.getId());
     }
 }

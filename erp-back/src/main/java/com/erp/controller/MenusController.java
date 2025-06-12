@@ -12,11 +12,12 @@ import java.util.Map;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class MenusController {
 
     @Autowired
     private MenusService menusService;
+
 
     @RequestMapping("/listMenus")
     public List<MenusVo> listMenus() {

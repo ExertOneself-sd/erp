@@ -140,7 +140,9 @@ width="80%"
 
 <script setup>
 import { onMounted,reactive,ref } from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
+import { getCurrentInstance } from "vue";
+const axios=getCurrentInstance().proxy.axios
 import { ElMessage } from 'element-plus'
 
 

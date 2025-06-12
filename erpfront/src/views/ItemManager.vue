@@ -332,7 +332,9 @@
 
 import { onMounted, reactive, ref } from 'vue'
 import { Plus, Delete, ZoomIn } from '@element-plus/icons-vue'
-import axios from 'axios'
+// import axios from 'axios'
+import { getCurrentInstance } from "vue";
+const axios=getCurrentInstance().proxy.axios
 import { ElMessage } from 'element-plus'
 
 const dialogItemVisible = ref(false)

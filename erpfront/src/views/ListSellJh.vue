@@ -80,7 +80,9 @@
 </template>
 
 <script setup>
-import axios from 'axios';
+// import axios from 'axios';
+import { getCurrentInstance } from "vue";
+const axios=getCurrentInstance().proxy.axios
 import {onMounted, ref ,reactive} from 'vue';
 import {ElMessage} from "element-plus";
 

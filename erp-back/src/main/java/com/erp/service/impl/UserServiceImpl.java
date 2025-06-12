@@ -5,14 +5,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.erp.dto.CountResult;
 import com.erp.mapper.UserRoleMapper;
+import com.erp.pojo.Menus;
 import com.erp.pojo.User;
 import com.erp.pojo.UserRole;
 import com.erp.service.UserService;
 import com.erp.mapper.UserMapper;
+import com.erp.vo.MenusVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,6 +102,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public List<CountResult> countEmployeeEduService(){
         return userMapper.countEmployeeEduMapper();
+    }
+
+    @Override
+    public List<MenusVo> queryUserMenusListService(Integer uid) {
+        List<Menus> menus = userMapper.queryUserMenusMapper(uid);
+        return doListMenus(menus,0);
+    }
+
+    private List<MenusVo> doListMenus(List<Menus> menus,Integer id){
+
+        //创建集合对象保存返回值
+        List<MenusVo> result=new ArrayList<>();
+        //遍历menus集合获得每个菜单节点对象，m每个菜单节点对象
+        for(Menus m:menus){
+            //m菜单节点对象的父节点id，是否和传入id相等，如果相等说明当前遍历的节点m，是id对应的菜单节点的子节点
+            if(m.getPid().equals(id)){
+
+                MenusVo menusVo=new MenusVo();
+                BeanUtils.copyProperties(m,menusVo);
+                //进行递归遍历
+                menusVo.setSubMenus(doListMenus(menus,m.getId()));
+                result.add(menusVo);
+            }
+        }
+        return result;
     }
 }
 

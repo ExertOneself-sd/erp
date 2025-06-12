@@ -57,8 +57,10 @@
   import AfterSaleCount from "@/views/AfterSaleCount.vue";
   import YearNumCount from "@/views/YearNumCount.vue";
   import {onMounted, ref} from "vue";
-  import axios from 'axios';
   import { ElMessage, ElLoading } from 'element-plus';
+
+  import { getCurrentInstance } from "vue";
+  const axios=getCurrentInstance().proxy.axios
 
 
   // 声明数组保存所有组件
@@ -93,7 +95,8 @@
     });
     
     try {
-    const { data } = await axios.get("http://localhost:8081/listMenus");
+    //const { data } = await axios.get("http://localhost:8081/listMenus");
+    const { data } = await axios.get("http://localhost:8081/queryUserMenus");
     if (!Array.isArray(data)) { // 验证数据结构
       throw new Error("菜单数据格式错误");
     }

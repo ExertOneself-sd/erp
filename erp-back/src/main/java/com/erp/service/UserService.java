@@ -3,6 +3,7 @@ package com.erp.service;
 import com.erp.dto.CountResult;
 import com.erp.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.erp.vo.MenusVo;
 
 import java.util.List;
 import java.util.Map;
@@ -28,5 +29,8 @@ public interface UserService extends IService<User> {
 
     /*实现员工按照学历分布统计*/
     public List<CountResult> countEmployeeEduService();
+
+    /*加载左侧导航菜单，根据当前用户加载*/
+    public List<MenusVo> queryUserMenusListService(Integer uid);
 
 }

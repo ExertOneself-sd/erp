@@ -1,6 +1,7 @@
 package com.erp.mapper;
 
 import com.erp.dto.CountResult;
+import com.erp.pojo.Menus;
 import com.erp.pojo.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -22,6 +23,9 @@ public interface UserMapper extends BaseMapper<User> {
 
     /*实现员工按照学历分布统计*/
     public List<CountResult> countEmployeeEduMapper();
+
+    /*加载当前登录用户菜单信息*/
+    public List<Menus> queryUserMenusMapper(Integer uid);
 
 }
 

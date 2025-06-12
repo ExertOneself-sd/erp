@@ -16,7 +16,9 @@
 </template>
 
 <script setup>
-import axios from 'axios';
+// import axios from 'axios';
+import { getCurrentInstance } from "vue";
+const axios=getCurrentInstance().proxy.axios
 import * as echarts from 'echarts';
 import { onMounted,reactive,ref } from 'vue';
 

@@ -30,10 +30,9 @@ public interface UserService extends IService<User> {
     /*实现员工按照学历分布统计*/
     public List<CountResult> countEmployeeEduService();
 
-<<<<<<< HEAD
+
     /*加载左侧导航菜单，根据当前用户加载*/
     public List<MenusVo> queryUserMenusListService(Integer uid);
 
-=======
->>>>>>> 9b36866f743edc05e0f02f00103b929e0d29fc81
+
 }

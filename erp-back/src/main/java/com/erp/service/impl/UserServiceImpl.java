@@ -103,7 +103,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     public List<CountResult> countEmployeeEduService(){
         return userMapper.countEmployeeEduMapper();
     }
-<<<<<<< HEAD
+
 
     @Override
     public List<MenusVo> queryUserMenusListService(Integer uid) {
@@ -129,8 +129,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         return result;
     }
-=======
->>>>>>> 9b36866f743edc05e0f02f00103b929e0d29fc81
+
 }
 
 

@@ -95,7 +95,7 @@ public class UserController {
     public List<CountResult> countEmpEdu() {
         return userService.countEmployeeEduService();
     }
-<<<<<<< HEAD
+
 
     /*处理用户登录请求*/
     @PostMapping("/userLogin")
@@ -130,6 +130,5 @@ public class UserController {
         User user= (User) session.getAttribute("online");
         return userService.queryUserMenusListService(user.getId());
     }
-=======
->>>>>>> 9b36866f743edc05e0f02f00103b929e0d29fc81
+
 }
